@@ -3,8 +3,8 @@
     <v-flex class="signup-box" elevation-4 xs10 md7 lg5>
       <v-form ref="form" class="signup-box-wrapper">
         <h1>계정 만들기</h1>
-        <v-text-field v-model="email" type="email" label="E-mail" single-line></v-text-field>
-        <v-text-field v-model="password" label="비밀번호" single-line></v-text-field>
+        <v-text-field v-model="email" type="email" label="E-mail" single-line required></v-text-field>
+        <v-text-field v-model="password" type="password" label="비밀번호" single-line required></v-text-field>
         <v-checkbox v-model="checkbox" color="#3F68E4" label="개인정보 취급 방침 및 이용 약관 동의"></v-checkbox>
         <v-btn color="#3F68E4" class="white--text btn-signup" @click="signup" round>계정 만들기</v-btn>
       </v-form>
