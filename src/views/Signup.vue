@@ -1,12 +1,12 @@
 <template>
-  <v-layout class="login-holder">
-    <v-flex class="login-box" elevation-4 xs10 md7 lg5>
-      <div class="login-box-wrapper">
-        <h1>StuFlo에 로그인</h1>
+  <v-layout class="signup-holder">
+    <v-flex class="signup-box" elevation-4 xs10 md7 lg5>
+      <div class="signup-box-wrapper">
+        <h1>계정 만들기</h1>
         <v-text-field v-model="email" label="E-mail"></v-text-field>
         <v-text-field v-model="password" label="비밀번호"></v-text-field>
-        <v-btn color="#3F68E4" class="white--text btn-login" round>로그인</v-btn>
-        <v-btn color="#3F68E4" class="btn-signup" @click="$router.push('/signup')" flat>계정 만들기</v-btn>
+        <v-checkbox v-model="checkbox" color="#3F68E4" label="개인정보 취급 방침 및 이용 약관 동의"></v-checkbox>
+        <v-btn color="#3F68E4" class="white--text btn-signup" @click="signup" round>계정 만들기</v-btn>
       </div>
     </v-flex>
   </v-layout>
@@ -17,7 +17,12 @@ export default {
   data: () => ({
     email: "",
     password: ""
-  })
+  }),
+  methods: {
+    signup() {
+      alert("SIGNUP ALERT")
+    }
+  }
 };
 </script>
 
@@ -35,10 +40,10 @@ html {
   text-align: center;
   color: white;
 }
-.login-holder {
+.signup-holder {
   height: 100vh;
 }
-.login-box {
+.signup-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,12 +54,12 @@ html {
   border-radius: 10px;
   color: #222;
 }
-.login-box-wrapper {
+.signup-box-wrapper {
   width: 70%;
 }
-.btn-login {
+.btn-signup {
   display: flex;
-  margin: 3vw auto 0 auto;
+  margin: 1vw auto 0 auto;
   width: 80%;
 }
 </style>
