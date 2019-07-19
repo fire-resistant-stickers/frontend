@@ -1,11 +1,32 @@
 <template>
   <v-layout class="signup-holder">
     <v-flex class="signup-box" elevation-4 xs10 md7 lg5>
-      <v-form ref="form" class="signup-box-wrapper">
+      <v-form ref="form" v-model="valid" class="signup-box-wrapper">
         <h1>계정 만들기</h1>
-        <v-text-field v-model="email" type="email" label="E-mail" single-line required></v-text-field>
-        <v-text-field v-model="password" type="password" label="비밀번호" single-line required></v-text-field>
-        <v-checkbox v-model="checkbox" color="#3F68E4" label="개인정보 취급 방침 및 이용 약관 동의"></v-checkbox>
+        <v-text-field
+          v-model="email"
+          type="email"
+          label="E-mail"
+          :rules="emailRules"
+          single-line
+          required
+        ></v-text-field>
+        <v-text-field
+          v-model="password"
+          type="password"
+          label="비밀번호"
+          hint="4자 이상 입력하십시오"
+          :rules="pwRules"
+          counter
+          single-line
+          required
+        ></v-text-field>
+        <v-checkbox
+          v-model="checkbox"
+          color="#3F68E4"
+          label="개인정보 취급 방침 및 이용 약관 동의"
+          :rules="[v => !!v || '약관에 동의하여 주십시오']"
+        ></v-checkbox>
         <v-btn color="#3F68E4" class="white--text btn-signup" @click="signup" round>계정 만들기</v-btn>
       </v-form>
     </v-flex>
@@ -15,12 +36,23 @@
 <script>
 export default {
   data: () => ({
+    valid: true,
     email: "",
-    password: ""
+    emailRules: [
+      v => !!v || "필수 항목입니다.",
+      v => /.+@.+/.test(v) || "유효한 E-mail을 입력하여 주십시오"
+    ],
+    password: "",
+    pwRules: [
+      v => !!v || "필수 항목입니다.",
+      v => (v && v.length > 4) || "비밀번호를 4자 이상 입력하십시오."
+    ]
   }),
   methods: {
     signup() {
-      alert("SIGNUP ALERT")
+      if (this.$refs.form.validate()) {
+        this.$router.push("/");
+      }
     }
   }
 };
