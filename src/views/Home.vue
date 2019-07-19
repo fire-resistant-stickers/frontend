@@ -1,11 +1,10 @@
 <template>
-  <div>this is home!</div>
+  <!-- <img alt="StuFlo" src="../assets/logo.svg"> -->
+  <v-img src="../assets/logo.svg"></v-img>
 </template>
 
 <script>
-
-  export default {
-    components: {
-    }
-  }
+export default {
+  components: {}
+};
 </script>

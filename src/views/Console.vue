@@ -1,6 +1,6 @@
 <template>
   <v-layout class="console-holder">
-    <v-layout class="console-box" elevation-4>
+    <v-flex class="console-box" elevation-4>
       <v-flex xs6 class="vl">
         <v-layout align-start column fill-height>
           <v-layout align-center>
@@ -17,6 +17,7 @@
           </v-layout>
         </v-layout>
       </v-flex>
+      <!-- 구분  -->
       <v-text-field xs6>
         <h2>노드 정보 수정</h2>
         <v-text-field v-model="node" label="노드 이름"></v-text-field>
@@ -32,16 +33,26 @@
           <v-text-field v-model="title" label="제목"></v-text-field>
         </v-flex>
         <v-flex>
-          <v-text-field v-model="url" label="URL"></v-text-field>
+          <v-layout>
+            <v-text-field v-model="url" label="URL"></v-text-field>
+            <v-btn fab flat small>
+              <v-icon>remove</v-icon>
+            </v-btn>
+          </v-layout>
         </v-flex>
       </v-text-field>
-    </v-layout>
+    </v-flex>
   </v-layout>
 </template>
 
 <script>
 export default {
   data: () => ({
+      node: "",
+      rating: 0,
+      parent: "",
+      title: "",
+      url: "",
     data: [
       {
         name: "0",
