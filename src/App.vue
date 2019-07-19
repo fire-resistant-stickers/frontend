@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "App",
   components: {},
@@ -10,6 +11,12 @@ export default {
     return {
       //
     };
+  },
+  created(){
+    axios.get(this.$store.state.mainPath+"/console/getData")
+    .then(data=>{
+      this.$store.state.data = data.data.data
+    })
   }
 };
 </script>

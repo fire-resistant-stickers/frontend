@@ -5,7 +5,7 @@
         <v-layout align-center justify-end>
           <h1>대시보드</h1>
           <v-flex align-self-end>
-            <v-btn fab flat>
+            <v-btn fab flat @click="$router.push('/search')">
               <v-icon>search</v-icon>
             </v-btn>
           </v-flex>
@@ -40,7 +40,22 @@ export default {
   data: () => ({
     nodesCnt: 0,
     daysCnt: 0
-  })
+  }),
+  computed: {
+    getToken(){
+      return this.$store.state.token
+    }
+  },
+  created(){
+    if(this.getToken){
+      axios.post(this.$store.state.mainPath+'/auth/getUserProfile',{token:this.getToken})
+      .then(data=>{
+      })
+    }
+    else{
+      this.$router.push('/login')
+    }
+  }
 };
 </script>
 
@@ -74,8 +89,12 @@ html {
 }
 .dash-box-wrapper {
   width: 70%;
+    display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 .profile-container {
+
   border-radius: 10px;
   width: 100%;
   max-width: 400px;

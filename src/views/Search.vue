@@ -8,17 +8,17 @@
             <v-icon>search</v-icon>
           </v-btn>
         </v-layout>
-        <v-list two-line dense>
-          <template v-for="(item, index) in items">
-            <v-list-tile :key="item.topic" class="li" @click>
+        <v-list two-line dense v-if="getData">
+          <template v-for="(item,index) in search ? searchData() : getData">
+            <v-list-tile :key="item.title" class="li" @click="setCurrentData(index)">
               <v-list-tile-content>
-                <v-list-tile-title v-html="item.topic"></v-list-tile-title>
+                <v-list-tile-title v-html="item.title"></v-list-tile-title>
                 <v-list-tile-sub-title v-html="item.category"></v-list-tile-sub-title>
               </v-list-tile-content>
             </v-list-tile>
           </template>
         </v-list>
-        <v-btn round>
+        <v-btn round @click="$router.push('/console')">
           <v-layout>
             <v-icon>add_circle</v-icon>
             <div>새 플로우 만들기...</div>
@@ -32,13 +32,22 @@
 <script>
 export default {
   data: () => ({
-    items: [
-      { topic: "C", category: "컴퓨터 과학 > 프로그래밍 언어" },
-      { topic: "C++", category: "컴퓨터 과학 > 프로그래밍 언어" },
-      { topic: "C#", category: "컴퓨터 과학 > 프로그래밍 언어" },
-      { topic: "Objective-C", category: "컴퓨터 과학 > 프로그래밍 언어" }
-    ]
-  })
+    search : ""
+  }),
+  methods:{
+    searchData(){
+      return this.getData.filter(x=>x.title.indexOf(this.search) != -1)
+    },
+    setCurrentData(idx){
+      this.$store.state.currentDataIndex = idx
+      this.$router.push("/graph")
+    }
+  },
+  computed:{
+    getData(){
+      return this.$store.state.data
+    }
+  }
 };
 </script>
 
