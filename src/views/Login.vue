@@ -1,10 +1,26 @@
 <template>
   <v-layout class="login-holder">
     <v-flex class="login-box" elevation-4 xs10 md7 lg5>
-      <v-form ref="form" class="login-box-wrapper">
+      <v-form ref="form" v-model="valid" class="login-box-wrapper">
         <h1>StuFlo에 로그인</h1>
-        <v-text-field v-model="email" type="email" label="E-mail" single-line required></v-text-field>
-        <v-text-field v-model="password" type="password" label="비밀번호" single-line required></v-text-field>
+        <v-text-field
+          v-model="email"
+          type="email"
+          label="E-mail"
+          :rules="emailRules"
+          @keyup.enter="login"
+          single-line
+          required
+        ></v-text-field>
+        <v-text-field
+          v-model="password"
+          type="password"
+          label="비밀번호"
+          :rules="pwRules"
+          @keyup.enter="login"
+          single-line
+          required
+        ></v-text-field>
         <v-btn color="#3F68E4" class="white--text btn-login" round>로그인</v-btn>
         <v-btn color="#3F68E4" class="btn-signup" @click="$router.push('/signup')" flat>계정 만들기</v-btn>
       </v-form>
@@ -15,9 +31,25 @@
 <script>
 export default {
   data: () => ({
+    valid: true,
     email: "",
-    password: ""
-  })
+    emailRules: [
+      v => !!v || "필수 항목입니다.",
+      v => /.+@.+/.test(v) || "유효한 E-mail을 입력하여 주십시오"
+    ],
+    password: "",
+    pwRules: [
+      v => !!v || "필수 항목입니다.",
+      v => (v && v.length > 4) || "비밀번호를 4자 이상 입력하십시오."
+    ]
+  }),
+  methods: {
+    login() {
+      if (this.$refs.form.validate()) {
+        this.$router.push("/");
+      }
+    }
+  }
 };
 </script>
 
