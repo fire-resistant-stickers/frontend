@@ -8,6 +8,7 @@
           type="email"
           label="E-mail"
           :rules="emailRules"
+          @keyup.enter="signup"
           single-line
           required
         ></v-text-field>
@@ -17,6 +18,7 @@
           label="비밀번호"
           hint="4자 이상 입력하십시오"
           :rules="pwRules"
+          @keyup.enter="signup"
           counter
           single-line
           required
