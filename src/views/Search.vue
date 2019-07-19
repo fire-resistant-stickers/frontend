@@ -5,7 +5,7 @@
         <v-layout>
           <v-text-field v-model="search" label="검색" single-line></v-text-field>
           <v-btn fab flat small>
-            <img alt="Search" src="../assets/baseline-search-24px.svg" />
+            <v-icon>search</v-icon>
           </v-btn>
         </v-layout>
         <v-list two-line dense>
@@ -20,7 +20,7 @@
         </v-list>
         <v-btn round>
           <v-layout>
-            <img class="mr-2" alt="Search" src="../assets/baseline-add_circle-24px.svg" />
+            <v-icon>add_circle</v-icon>
             <div>새 플로우 만들기...</div>
           </v-layout>
         </v-btn>

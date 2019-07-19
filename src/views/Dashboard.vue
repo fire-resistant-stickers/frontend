@@ -2,9 +2,16 @@
   <v-layout class="dash-holder">
     <v-flex class="dash-box" elevation-4 xs10 md7 lg5>
       <div class="dash-box-wrapper">
-        <h1>대시보드</h1>
+        <v-layout align-center justify-end>
+          <h1>대시보드</h1>
+          <v-flex align-self-end>
+            <v-btn fab flat>
+              <v-icon>search</v-icon>
+            </v-btn>
+          </v-flex>
+        </v-layout>
         <v-layout class="profile-container" elevation-4>
-          <img alt="Profile" src="../assets/baseline-account_circle-24px.svg" />
+          <v-icon>account_circle</v-icon>
           <v-layout class="profile-info" align-start column>
             <h3>devstdio@stdio.dev</h3>
             <div>현재까지 {{ nodesCnt }}개의 노드 조회</div>
@@ -60,7 +67,7 @@ html {
   justify-content: center;
   margin: auto;
   max-width: 50vw;
-  height: 50vh;
+  height: 70vh;
   background: white;
   border-radius: 10px;
   color: #222;
