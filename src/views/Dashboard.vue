@@ -13,7 +13,7 @@
         <v-layout class="profile-container" elevation-4>
           <v-icon>account_circle</v-icon>
           <v-layout class="profile-info" align-start column>
-            <h3>devstdio@stdio.dev</h3>
+            <h3>{{ email }}</h3>
             <div>현재까지 {{ nodesCnt }}개의 노드 조회</div>
             <div>{{ daysCnt }}일 째 StuFlo와 함께하는 중</div>
           </v-layout>
@@ -38,6 +38,7 @@
 <script>
 export default {
   data: () => ({
+    email: "devstdio@stdio.dev",
     nodesCnt: 0,
     daysCnt: 0
   }),
