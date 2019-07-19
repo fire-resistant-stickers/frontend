@@ -4,7 +4,7 @@
       <v-form ref="form" class="login-box-wrapper">
         <h1>StuFlo에 로그인</h1>
         <v-text-field v-model="email" type="email" label="E-mail" single-line required></v-text-field>
-        <v-text-field v-model="password" label="비밀번호" single-line required></v-text-field>
+        <v-text-field v-model="password" type="password" label="비밀번호" single-line required></v-text-field>
         <v-btn color="#3F68E4" class="white--text btn-login" round>로그인</v-btn>
         <v-btn color="#3F68E4" class="btn-signup" @click="$router.push('/signup')" flat>계정 만들기</v-btn>
       </v-form>
