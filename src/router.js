@@ -6,6 +6,7 @@ import Signup from "./views/Signup.vue"
 import Dash from "./views/Dashboard.vue"
 import Search from "./views/Search.vue"
 import Graph from "./views/Graph.vue"
+import Console from "./views/Console.vue"
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: "/graph",
       name: "graph",
       component: Graph
+    },
+    {
+      path: "/console",
+      name: "console",
+      component: Console
     }
   ]
 });

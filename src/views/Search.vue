@@ -3,20 +3,14 @@
     <v-flex class="search-box" elevation-4 xs10 md7 lg5>
       <div class="search-box-wrapper">
         <v-layout>
-          <v-text-field v-model="search" label="검색"></v-text-field>
+          <v-text-field v-model="search" label="검색" single-line></v-text-field>
           <v-btn fab flat small>
             <img alt="Search" src="../assets/baseline-search-24px.svg" />
           </v-btn>
         </v-layout>
-        <!-- <v-btn flat block v-for="item in items" class="li" :key="item">
-          <div class="btn-content">
-            <h3>{{ item.topic }}</h3>
-            {{ item.category }}
-          </div>
-        </v-btn>-->
-        <v-list two-line>
+        <v-list two-line dense>
           <template v-for="(item, index) in items">
-            <v-list-tile :key="item.title" @click>
+            <v-list-tile :key="item.topic" class="li" @click>
               <v-list-tile-content>
                 <v-list-tile-title v-html="item.topic"></v-list-tile-title>
                 <v-list-tile-sub-title v-html="item.category"></v-list-tile-sub-title>
@@ -24,8 +18,8 @@
             </v-list-tile>
           </template>
         </v-list>
-        <v-btn flat block>
-          <v-layout class="li li-last">
+        <v-btn round>
+          <v-layout>
             <img class="mr-2" alt="Search" src="../assets/baseline-add_circle-24px.svg" />
             <div>새 플로우 만들기...</div>
           </v-layout>
@@ -80,11 +74,6 @@ html {
   width: 80%;
 }
 .li {
-  display: flex;
-  text-align: left;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
-/* .v-btn {
-  justify-content: flex-start;
-  padding: 100px;
-} */
 </style>

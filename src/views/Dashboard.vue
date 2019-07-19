@@ -7,8 +7,8 @@
           <img alt="Profile" src="../assets/baseline-account_circle-24px.svg" />
           <v-layout class="profile-info" align-start column>
             <h3>devstdio@stdio.dev</h3>
-            <div>현재까지 1116개의 노드 조회</div>
-            <div>7일 째 StuFlo와 함께하는 중</div>
+            <div>현재까지 {{ nodesCnt }}개의 노드 조회</div>
+            <div>{{ daysCnt }}일 째 StuFlo와 함께하는 중</div>
           </v-layout>
         </v-layout>
         <v-flex>
@@ -31,7 +31,8 @@
 <script>
 export default {
   data: () => ({
-    //
+    nodesCnt: 0,
+    daysCnt: 0
   })
 };
 </script>
