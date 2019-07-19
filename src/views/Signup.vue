@@ -48,7 +48,7 @@ export default {
         password: "",
         pwRules: [
             v => !!v || "필수 항목입니다.",
-            v => (v && v.length > 4) || "비밀번호를 4자 이상 입력하십시오."
+            v => (v && v.length >= 4) || "비밀번호를 4자 이상 입력하십시오."
         ]
     }),
     methods: {
