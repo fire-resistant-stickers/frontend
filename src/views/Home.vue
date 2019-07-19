@@ -1,6 +1,5 @@
 <template>
-  <!-- <img alt="StuFlo" src="../assets/logo.svg"> -->
-  <v-img src="../assets/logo.svg"></v-img>
+  <img alt="StuFlo" src="../assets/logo.svg">
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
   <v-layout class="console-holder">
     <v-flex class="console-box" elevation-4>
-      <v-flex xs6 class="vl">
+      <v-flex xs6 class="vl px-4 pt-2">
         <v-layout align-start column fill-height>
           <v-layout align-center>
-            <h2>C++</h2>
+            <v-text-field v-model="docName" label="문서 이름" single-line></v-text-field>
             <v-btn fab flat small>
               <v-icon>edit</v-icon>
             </v-btn>
@@ -15,32 +15,39 @@
               <v-icon>arrow_drop_down</v-icon>
             </v-btn>
           </v-layout>
+          <div class="pa-2" style="height: 100%; background: green">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Rem tenetur explicabo sequi, nobis debitis rerum adipisci officia magni itaque,
+            pariatur quis aspernatur vero non aperiam hic quas iste porro sed.
+          </div>
         </v-layout>
       </v-flex>
-      <!-- 구분  -->
-      <v-text-field xs6>
+      <!-- 좌우 구분  -->
+      <v-flex class="pa-4" xs6>
         <h2>노드 정보 수정</h2>
         <v-text-field v-model="node" label="노드 이름"></v-text-field>
-        <v-flex>
-          <v-text-field v-model="rating" label="레이팅"></v-text-field>
-        </v-flex>
-        <v-text-field>
-          <v-text-field v-model="parent" label="상위 노드"></v-text-field>
-        </v-text-field>
+        <v-text-field v-model="rating" label="레이팅"></v-text-field>
 
         <h2>큐레이터 추천 자료 입력</h2>
-        <v-flex>
-          <v-text-field v-model="title" label="제목"></v-text-field>
+        <v-layout row>
+          <v-flex xs6 class="mr-2">
+            <v-text-field v-model="title" label="제목"></v-text-field>
+          </v-flex>
+          <v-flex xs6 class="ml-3">
+            <v-layout>
+              <v-text-field v-model="url" label="URL"></v-text-field>
+              <v-btn fab flat small color="red">삭제</v-btn>
+            </v-layout>
+          </v-flex>
+        </v-layout>
+        <v-flex text-xs-right>
+          <v-btn flat color="#3b6ce4" class="font-weight-bold">자료 추가</v-btn>
         </v-flex>
-        <v-flex>
-          <v-layout>
-            <v-text-field v-model="url" label="URL"></v-text-field>
-            <v-btn fab flat small>
-              <v-icon>remove</v-icon>
-            </v-btn>
-          </v-layout>
-        </v-flex>
-      </v-text-field>
+        <v-spacer></v-spacer>
+        <v-layout align-end justify-end>
+          <v-btn flat color="#3b6ce4" class="font-weight-bold">저장 및 업로드</v-btn>
+        </v-layout>
+      </v-flex>
     </v-flex>
   </v-layout>
 </template>
@@ -48,11 +55,12 @@
 <script>
 export default {
   data: () => ({
-      node: "",
-      rating: 0,
-      parent: "",
-      title: "",
-      url: "",
+    docName: "C++",
+    node: "",
+    rating: 0,
+    parent: "",
+    title: "",
+    url: "",
     data: [
       {
         name: "0",
@@ -347,20 +355,17 @@ html {
 }
 .console-holder {
   height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 .console-box {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+  margin: 2%;
   width: 90vw;
   height: 80vh;
   background: white;
   border-radius: 10px;
   color: #222;
-}
-.console-box-wrapper {
-  width: 70%;
 }
 .vl {
   border-right: 1px solid rgba(0, 0, 0, 0.15);
