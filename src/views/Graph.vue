@@ -2,11 +2,11 @@
     <div id="graphRoot">
         <div id="liner2"></div>
         <div id="graph"></div>
-        <v-bottom-sheet :value=" data[currentIndex]">
+        <v-bottom-sheet :value="currentIndex != -1 && getData">
             <v-list>
-                <v-subheader></v-subheader>
-                <v-list-tile v-for="item in data[currentIndex].recommend" :key="item.title" @click="sheet = false">
-                  <div>{{item.title}}</div>
+                <v-subheader>Open in</v-subheader>
+                <v-list-tile v-for="item in buffer" :key="item.title">
+                  <a :href="item.url" target="_blink">{{item.title}}</a>
                 </v-list-tile>
             </v-list>
         </v-bottom-sheet>
@@ -22,6 +22,7 @@ export default {
         main: null,
         liner: null,
 
+        buffer : [],
         currentIndex: -1
     }),
     mounted() {
@@ -29,7 +30,6 @@ export default {
             this.$router.push("/search");
         } else {
             this.data = this.getData[this.getCurrentDataIndex].nodeData;
-
         }
         var graph = document.getElementById("graph");
         var liner = SVG("liner2");
@@ -49,11 +49,16 @@ export default {
             if (e.target.classList.contains("item")) {
                 startItem = e.target;
                 this.currentIndex = startItem.controllter.index;
-                console.log(this.data[this.currentIndex].recommend)
+                if(this.data[this.currentIndex]){
+                  this.buffer = this.data[this.currentIndex].recommend
+                }
             } else {
                 this.currentIndex = -1;
             }
         });
+        addEventListener("mouseup",e=>{
+          this.currentIndex = -1;
+        })
     },
     methods: {
         resizeing() {
