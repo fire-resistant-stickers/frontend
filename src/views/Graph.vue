@@ -2,15 +2,40 @@
   <div id="graphRoot">
     <div id="liner"></div>
     <div id="graph"></div>
-    <v-bottom-sheet v-model="sheet">
-      <template v-slot:activator>
-        <v-btn color="purple" dark>Click me</v-btn>
-      </template>
-      <v-list>
-        <v-subheader>Open in</v-subheader>
-        <v-list-tile v-for="tile in tiles" :key="tile.title" @click="sheet = false">
-          <!--  -->
-        </v-list-tile>
+    <v-bottom-sheet v-model="sheet" class="sheet">
+      <v-list two-line style="padding-top:0; border-radius: 20px;">
+        <v-layout
+          align-center
+          justify-center
+          style="box-shadow: 0 2px 2px rgba(0,0,0,0.15); border-radius: 10px 10px 0 0"
+        >
+          <v-flex xs1></v-flex>
+          <v-flex xs10>
+            <h2>{{ docName }}</h2>
+          </v-flex>
+          <v-flex xs1>
+            <v-btn fab flat @click="sheet = false">
+              <v-icon>close</v-icon>
+            </v-btn>
+          </v-flex>
+        </v-layout>
+
+        <v-layout v-for="item in items" :key="item.title" @click="sheet = false">
+          <v-subheader v-if="item.legend" :key="item.legend">{{ item.legend }}</v-subheader>
+          <v-flex v-else>
+            <v-list-tile row>
+              <v-list-tile-content>
+                <v-list-tile-title v-html="item.title"></v-list-tile-title>
+                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
+              </v-list-tile-content>
+              <v-layout column align-end v-if="item.read">
+                <v-icon color="#09c06e">check</v-icon>
+                <div>{{ item.read }}전 읽음</div>
+              </v-layout>
+            </v-list-tile>
+            <v-divider></v-divider>
+          </v-flex>
+        </v-layout>
       </v-list>
     </v-bottom-sheet>
   </div>
@@ -19,6 +44,31 @@
 import axios from "axios";
 export default {
   data: () => ({
+    sheet: true,
+    docName: "C++로의 소개",
+    items: [
+      {
+        legend: "큐레이터 추천"
+      },
+      {
+        title: "Introduction to C++",
+        subtitle: "YouTube 동영상",
+        read: "3일"
+      },
+      {
+        title: "C에서 C++으로의 트랜지션, 그리고 비교",
+        subtitle: "YouTube 동영상",
+        read: false
+      },
+      {
+        legend: "StuFlow 자동 추천"
+      },
+      {
+        title: "The Basics of C++",
+        subtitle: "PDF 문서",
+        read: false
+      }
+    ],
     data: [
       {
         name: "0",
@@ -236,5 +286,9 @@ export default {
   width: fit-content;
   display: flex;
   flex-direction: column;
+}
+
+.sheet {
+  border-radius: 10px;
 }
 </style>
